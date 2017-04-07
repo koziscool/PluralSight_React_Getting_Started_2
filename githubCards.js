@@ -15,21 +15,23 @@ var Card = React.createClass({
 });
 
 
+let data = [
+  { name:"Paul O'Shannessy",
+    avatar_url: "https://avatars2.githubusercontent.com/u/8445?v=3",
+    company: "Facebook" },
+  { name:"Ben Alpert",
+    avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=3",
+    company: "Facebook" }
+];
+
 var CardList = React.createClass({
   render: function() {
     return (
       <div>
-        <Card 
-          name="Paul O'Shannessy" 
-          avatar_url = "https://avatars2.githubusercontent.com/u/8445?v=3"
-          company = "Facebook"
-        />
-        <Card />
-        <Card />
-        <Card />
+        { this.props.cards.map( card => <Card {...card} />)}
       </div>
     )
   }
 });
 
-ReactDOM.render( <CardList />, document.getElementById("container"));
+ReactDOM.render( <CardList cards={data}/>, document.getElementById("container"));
