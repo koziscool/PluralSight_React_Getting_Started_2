@@ -2,9 +2,15 @@
 
 var Button = React.createClass({
 
+  handleClick: function() {
+    this.props.onClickFunction(this.props.incrementValue);
+  },
+
   render: function() {
     return(
-        <button onClick={ this.props.onClickFunction }>+1</button>
+        <button onClick={ this.handleClick }>
+          +{this.props.incrementValue}
+        </button>
     );
   }
 });
@@ -24,16 +30,19 @@ var App = React.createClass({
     }
   },
 
-  incrementCounter: function() {
+  incrementCounter: function( incrementValue ) {
     this.setState({
-      counter: this.state.counter + 1
+      counter: this.state.counter + incrementValue
     });
   },
 
   render: function() {
     return (
       <div>
-        <Button onClickFunction={this.incrementCounter} />
+        <Button incrementValue = {1} onClickFunction={this.incrementCounter} />
+        <Button incrementValue = {5} onClickFunction={this.incrementCounter} />
+        <Button incrementValue = {10} onClickFunction={this.incrementCounter} />
+        <Button incrementValue = {100} onClickFunction={this.incrementCounter} />
         <Result counter = {this.state.counter}/>
       </div>
     );
