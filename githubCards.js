@@ -15,14 +15,6 @@ var Card = React.createClass({
 });
 
 
-let data = [
-  { name:"Paul O'Shannessy",
-    avatar_url: "https://avatars2.githubusercontent.com/u/8445?v=3",
-    company: "Facebook" },
-  { name:"Ben Alpert",
-    avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=3",
-    company: "Facebook" }
-];
 
 var CardList = React.createClass({
   render: function() {
@@ -34,4 +26,38 @@ var CardList = React.createClass({
   }
 });
 
-ReactDOM.render( <CardList cards={data}/>, document.getElementById("container"));
+var Form = React.createClass({
+  render: function() {
+    return (
+      <form>
+        <input type="text" placeholder="Github username" />
+        <button type="submit">Add card</button>
+      </form>
+    )
+  }
+});
+
+var App = React.createClass({
+   getInitialState: function() {
+    return {
+        cards: [
+        { name:"Paul O'Shannessy",
+          avatar_url: "https://avatars2.githubusercontent.com/u/8445?v=3",
+          company: "Facebook" },
+        { name:"Ben Alpert",
+          avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=3",
+          company: "Facebook" }
+      ],
+    }
+  },
+  render: function() {
+    return (
+      <div>
+        <Form />
+        <CardList cards={this.state.cards}/>
+      </div>
+    )
+  }
+});
+
+ReactDOM.render( <App />, document.getElementById("container"));
