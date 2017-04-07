@@ -1,15 +1,16 @@
 
 
-const Button = React.createClass({
+var Button = React.createClass({
   render: function() {
     return(
-        <button>Go</button>
+        <button>{this.props.aprop}</button>
     );
   }
 });
 
 ReactDOM.render( 
-    <Button/>, 
+    <Button aprop="koz"/>, 
     document.getElementById("container")
 );
+
 
