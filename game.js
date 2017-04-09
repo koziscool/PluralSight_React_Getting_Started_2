@@ -1,13 +1,18 @@
 
 
 var Stars = React.createClass({
+
+
   render: function() {
+    
+    const numberOfStars = 1+ Math.floor( Math.random() * 9 );
+    let stars = [];
+    for (let i = 0; i< numberOfStars; i++) {
+      stars.push(<i key={i} className="fa fa-star"></i> )
+    }
     return (
       <div className="col-5">
-        <i className="fa fa-star"></i>
-        <i className="fa fa-star"></i>
-        <i className="fa fa-star"></i>
-        <i className="fa fa-star"></i>
+        {stars}
       </div>
     );
   }
@@ -40,19 +45,15 @@ var Numbers = React.createClass({
     return (
       <div className="card text-center">
         <div>
-          <span>1</span>
-          <span className="selected">2</span>
-          <span className="used">3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
+          {Numbers.list.map((number) => 
+            <span key={number}>{number}</span>)}
         </div>
       </div>
     );
   }
 });
 
+Numbers.list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 var Game = React.createClass({
   render: function() {
