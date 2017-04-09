@@ -4,10 +4,10 @@ var Stars = React.createClass({
   render: function() {
     return (
       <div className="col-5">
-        <span className="glyphicon glyphicon-star"></span>
-        <span className="glyphicon glyphicon-star"></span>
-        <span className="glyphicon glyphicon-star"></span>
-        <span className="glyphicon glyphicon-star"></span>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
+        <i className="fa fa-star"></i>
       </div>
     );
   }
