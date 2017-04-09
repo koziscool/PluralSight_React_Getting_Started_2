@@ -20,40 +20,56 @@ var CardList = React.createClass({
   render: function() {
     return (
       <div>
-        { this.props.cards.map( card => <Card {...card} />)}
+        { this.props.cards.map( card => <Card key = {card.id} {...card} />)}
       </div>
     )
   }
 });
 
 var Form = React.createClass({
+   getInitialState: function() {
+    return { userName: '' }
+  },
+
+  handleSubmit: function( event ){
+    event.preventDefault();
+    var formComponent = this;
+    $.get( "https://api.github.com/users/" + this.state.userName, function(data){
+      formComponent.props.onSubmit( data );
+      formComponent.setState({ userName: '' });
+    } );
+  },
+
   render: function() {
     return (
-      <form>
-        <input type="text" placeholder="Github username" />
+      <form onSubmit={ this.handleSubmit }>
+        <input type="text" 
+          value = {this.state.userName}
+          onChange={ (event) => this.setState( {userName: event.target.value } ) }
+          placeholder="Github username" required/>
         <button type="submit">Add card</button>
       </form>
-    )
+    );
   }
 });
 
 var App = React.createClass({
    getInitialState: function() {
     return {
-        cards: [
-        { name:"Paul O'Shannessy",
-          avatar_url: "https://avatars2.githubusercontent.com/u/8445?v=3",
-          company: "Facebook" },
-        { name:"Ben Alpert",
-          avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=3",
-          company: "Facebook" }
-      ],
+        cards: [  ]
     }
   },
+
+  addNewCard: function(cardInfo) {
+    this.setState({
+      cards: this.state.cards.concat(cardInfo)
+    });
+  },
+
   render: function() {
     return (
       <div>
-        <Form />
+        <Form onSubmit={this.addNewCard}/>
         <CardList cards={this.state.cards}/>
       </div>
     )
