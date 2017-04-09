@@ -3,8 +3,11 @@
 var Stars = React.createClass({
   render: function() {
     return (
-      <div>
-        ...
+      <div className="col-5">
+        <span className="glyphicon glyphicon-star"></span>
+        <span className="glyphicon glyphicon-star"></span>
+        <span className="glyphicon glyphicon-star"></span>
+        <span className="glyphicon glyphicon-star"></span>
       </div>
     );
   }
@@ -13,8 +16,8 @@ var Stars = React.createClass({
 var Button = React.createClass({
   render: function() {
     return (
-      <div>
-        ...
+      <div className="col-2">
+        <button>=</button>
       </div>
     );
   }
@@ -23,7 +26,7 @@ var Button = React.createClass({
 var Answer = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="col-5">
         ...
       </div>
     );
@@ -33,11 +36,13 @@ var Answer = React.createClass({
 var Game = React.createClass({
   render: function() {
     return (
-      <div>
+      <div className="container">
         <h3>Play Nine</h3>
-        <Stars />
-        <Button />
-        <Answer />
+        <div className="row">
+          <Stars />
+          <Button />
+          <Answer />
+        </div>
       </div>
     );
   }
